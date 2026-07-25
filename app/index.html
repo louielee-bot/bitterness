@@ -1,1 +1,26 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Bitterness Recovery Toolkit</title><style>body{font:16px system-ui;margin:0;padding:40px;background:#221735;color:#faf5e8}main{max-width:640px;margin:auto}a{color:#e8cf7a}</style></head><body><main><h1>Bitterness Recovery Toolkit</h1><p>The companion app will open here as beta access expands.</p><a href="../">Return to the book site</a></main></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bitterness Recovery Toolkit</title>
+<style>
+:root{color-scheme:dark;--bg:#221735;--panel:#302044;--ink:#fffaf0;--muted:#d8cde0;--gold:#e8cf7a;--rose:#e49a9c}*{box-sizing:border-box}body{font:16px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;margin:0;min-height:100vh;background:radial-gradient(circle at top right,#553b70 0,#221735 42%,#171021 100%);color:var(--ink)}main{max-width:860px;margin:auto;padding:34px 20px 64px}header{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;margin-bottom:28px}h1,h2{font-family:Georgia,serif;line-height:1.08;margin:0 0 10px}h1{font-size:clamp(2.1rem,6vw,4rem)}h2{font-size:1.55rem}.eyebrow{color:var(--gold);font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-size:.75rem}.lead{color:var(--muted);max-width:58ch;line-height:1.6}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:22px}.card{background:rgba(48,32,68,.88);border:1px solid rgba(232,207,122,.22);border-radius:18px;padding:22px;box-shadow:0 20px 60px rgba(0,0,0,.2)}button,a{font:inherit}button{border:0;border-radius:999px;padding:11px 16px;background:var(--gold);color:#24152e;font-weight:800;cursor:pointer}button.secondary{background:transparent;border:1px solid rgba(255,255,255,.28);color:var(--ink)}.answer{margin-top:16px;color:var(--muted);line-height:1.65;min-height:72px}.quiz{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}.status{color:var(--gold);font-weight:700;margin-top:14px}.back{display:inline-block;margin-top:28px;color:var(--gold);text-decoration:none}@media(max-width:680px){header{display:block}.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<main>
+<header><div><div class="eyebrow">Companion app · beta</div><h1>Bitterness Recovery Toolkit</h1><p class="lead">A small place to pause, reflect, and return to the stories of Naomi, Ruth, Martha, and Mary with a heart open to healing.</p></div><a class="back" href="../">Back to the book</a></header>
+<section class="grid">
+<article class="card"><h2>When a feeling rises</h2><p class="lead">Name what you are carrying without judging yourself. Choose a prompt to begin a gentler conversation.</p><div class="quiz"><button data-prompt="I feel stuck">I feel stuck</button><button data-prompt="I feel hurt">I feel hurt</button><button data-prompt="I want to forgive">I want to forgive</button></div><div class="answer" id="reflection">Choose a prompt above.</div></article>
+<article class="card"><h2>Bible story recall</h2><p class="lead">A quick reflection quiz based on the book's featured stories.</p><p id="question">Who stayed with Naomi when she returned to Bethlehem?</p><div class="quiz"><button data-answer="Ruth">Ruth</button><button data-answer="Martha">Martha</button><button data-answer="Mary">Mary</button></div><div class="status" id="quizStatus" aria-live="polite"></div></article>
+</section>
+<section class="card" style="margin-top:16px"><h2>Three-minute reset</h2><p class="lead">Breathe in for four counts. Hold for four. Breathe out for six. Repeat three times, then write one thing you are ready to release and one thing you are ready to receive.</p><button class="secondary" id="reset">Start the reset</button><div class="status" id="timer" aria-live="polite"></div></section>
+</main>
+<script>
+const reflections={"I feel stuck":"You do not have to solve everything in this moment. Name one small step that would bring you closer to peace.","I feel hurt":"Your hurt deserves honesty and care. Write what happened, then write what you need now.","I want to forgive":"Forgiveness can be a process. Begin with willingness, boundaries, and a prayer for freedom from what keeps you bound."};
+document.querySelectorAll('[data-prompt]').forEach(b=>b.addEventListener('click',()=>document.querySelector('#reflection').textContent=reflections[b.dataset.prompt]));
+document.querySelectorAll('[data-answer]').forEach(b=>b.addEventListener('click',()=>document.querySelector('#quizStatus').textContent=b.dataset.answer==='Ruth'?'Correct — Ruth stayed with Naomi.':'Not this time. Revisit the story of Naomi and Ruth.'));
+let interval;document.querySelector('#reset').addEventListener('click',()=>{clearInterval(interval);let left=180;const out=document.querySelector('#timer');out.textContent='Reset in progress — breathe slowly.';interval=setInterval(()=>{left--;out.textContent=left>0?`Keep breathing · ${Math.floor(left/60)}:${String(left%60).padStart(2,'0')}`:'Reset complete — notice what feels different.';if(!left)clearInterval(interval)},1000)});
+</script>
+</body></html>
