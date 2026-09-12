@@ -26,9 +26,8 @@
      in a new tab. Deploy the whole landing-page folder (including the app/ subfolder) together
      — if you move the app to its own separate URL later, update the iframe src and the
      appLaunchBtn href near the bottom of the script.
-  8. Free ebook download is the actual file bundled in downloads/free-ebook.pdf (front matter
-     + full free edition, which already includes the sample chapter). Premium ebook fulfillment
-     via downloads/premium-ebook.pdf, gated behind the POP/PayFast flow described above.
+  8. Ebook requests are collected through the POP/PayFast flow described above. Digital files are
+     delivered after payment confirmation; no dead download links are shown before fulfillment.
   9. Countdown target: 30 August 2026, 09:00 SAST.
   10. Ebook preorders unlock immediate digital delivery (the book is finished); softcover and
       hardcover preorders ship after the 30 August launch once print production completes —
@@ -225,7 +224,7 @@
       <div class="eyebrow">Read Before You Buy</div>
       <h2>Front Matter &amp; Chapter One, Free</h2>
       <p class="section-sub">The full free edition includes the front matter and a substantial sample of the book — including complete chapters on Naomi, Ruth, and Martha &amp; Mary — so you know exactly what you're preordering.</p>
-      <a href="downloads/free-ebook.pdf" class="btn" download>Download the Free Ebook (PDF)</a>
+      <a href="#order" class="btn">Request the Free Ebook (PDF)</a>
     </div>
     <div class="card" style="padding:22px;">
       <div class="badge-row">
@@ -544,7 +543,7 @@ function showOrderSuccess(){
           ? "Your order is confirmed. Your ebook is ready to download below."
           : "Your order is confirmed. We'll be in touch via WhatsApp to arrange delivery once the book launches on 30 August."}
       </p>
-      ${isEbook ? `<a href="downloads/premium-ebook.pdf" download class="btn gold">Download Your eBook</a>` : ''}
+      ${isEbook ? `<a href="#order" class="btn gold">eBook delivery will follow payment confirmation</a>` : ''}
     </div>`;
   box.scrollIntoView({behavior:'smooth', block:'center'});
 }
